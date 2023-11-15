@@ -1,25 +1,41 @@
-import { useEffect, useRef } from 'react';
+import { useRef, useState } from 'react';
 import './index.css';
 import { Form } from 'react-bootstrap';
+import axios from 'axios';
+import { Button } from 'bootstrap';
 
-const UNSPLASH_API_URL = "https://api.unsplash.com/search/photos?page=1&query=office";
+const UNSPLASH_API_URL = "https://api.unsplash.com/search/photos";
+const IMAGES_PER_PAGE = 5;
 
 
 const App = () => {
   const searchInput = useRef(null);
+  const [images, setImages] = useState([]);
+  const [page, setpage] = useState(2);
+
+  const [totalPages, setTotalPages] = useState(0);
+
 
   const handleSearch = (event) => {
     event.preventDefault();
-    console.log(searchInput.current.value)
+    fetchImages();
   }
 
   const handleSelection = (selection) => {
     searchInput.current.value = selection;
-    console.log(import.meta.env.VITE_UNSPLASH_API_KEY);
+    fetchImages();
   }
 
-  const fetchImages = () => {
-    
+  const fetchImages = async () => {
+    try {
+      const { data } = await axios.get(`${UNSPLASH_API_URL}?query=${searchInput.current.value}&page=1&per_page=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_UNSPLASH_API_KEY}`);
+      console.log(data);
+      setImages(data.results);
+      setTotalPages(data.total_pages);
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return <div className='container'>
@@ -36,6 +52,27 @@ const App = () => {
       <div onClick={() => handleSelection("people")}>People</div>
       <div onClick={() => handleSelection("sea")}>Sea</div>
     </div>
+
+    <div className="images">
+      {
+        images.map((image) => {
+          return (
+            <img
+              key={image.id}
+              src={image.urls.regular} 
+              alt={image.alt_description}
+              className='image'
+            />
+          )
+        })
+      }
+    </div>
+
+
+    {/* <div className="buttons">
+      {page > 1 && <Button>Previous</Button>}
+      {page < totalPages && <Button>Next</Button>}
+    </div> */}
   </div>;
 };
 
