@@ -6,7 +6,8 @@
   --default-margin: 1rem;
   --medium-margin: 3rem;
   --larger-margin: 5rem;
-  --primary-color: #7676d7;
+  --bg-color: #124757;
+  --primary-color: #f1c576;
 }
 
 * {
@@ -16,6 +17,7 @@
 }
 
 body {
+  background-color: var(--bg-color);
   color: var(--primary-color);
 }
 
@@ -33,7 +35,7 @@ body {
 .title {
   text-align: center;
   margin-top: var(--default-margin);
-  color: #7676d7;
+  color: #f1c576;
 }
 
 .buttons {
@@ -45,22 +47,13 @@ body {
   margin-bottom: var(--larger-margin);
 }
 
-.buttons .btn,
-.buttons .btn:active,
-.buttons .btn:focus {
-  background-color: var(--primary-color);
-  box-shadow: none;
-  outline: none;
-  border: none;
-}
-
 .error-msg {
   color: #ff0000;
   text-align: center;
 }
 
 .loading {
-  color: #6565d4;
+  color: #f1c576;
   text-align: center;
   margin-top: 20px;
   font-size: 20px;
@@ -101,7 +94,7 @@ body {
 
 .filters > * {
   padding: 5px 10px;
-  background: #7676d7;
+  background: #ec6a5d;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
@@ -129,6 +122,7 @@ body {
   border-radius: 10px;
   transition: transform 0.5s;
   object-fit: cover;
+  border: 1px solid #f1c576;
 }
 
 .images .image:hover {
