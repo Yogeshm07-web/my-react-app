@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import './index.css';
 import { Form } from 'react-bootstrap';
 
@@ -15,6 +15,11 @@ const App = () => {
 
   const handleSelection = (selection) => {
     searchInput.current.value = selection;
+    console.log(import.meta.env.VITE_UNSPLASH_API_KEY);
+  }
+
+  const fetchImages = () => {
+    
   }
 
   return <div className='container'>
