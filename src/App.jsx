@@ -5,7 +5,7 @@ import axios from 'axios';
 import './index.css';
 
 const UNSPLASH_API_URL = "https://api.unsplash.com/search/photos";
-const IMAGES_PER_PAGE = 5;
+const IMAGES_PER_PAGE = 15;
 
 
 const App = () => {
